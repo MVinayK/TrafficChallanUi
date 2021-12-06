@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { ImageUploaderComponent } from './image-uploader/image-uploader.component';
 import { ImageGalleryComponent } from './image-gallery/image-gallery.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

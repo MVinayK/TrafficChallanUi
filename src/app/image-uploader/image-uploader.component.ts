@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FileUploadService } from 'src/services/file-upload-service.service';
 
 @Component({
@@ -12,6 +13,12 @@ export class ImageUploaderComponent implements OnInit {
   filePath: string = "";
   loading: boolean = false; // Flag variable
   file: File = null; // Variable to store file
+  reasonList = ['Wrong Parking', 'No Helmet', 'others']
+
+  form = new FormGroup({  
+    reason: new FormControl(''),
+    description: new FormControl('')  
+  }); 
 
   constructor(private fileUploadService: FileUploadService) { }
 
@@ -31,10 +38,14 @@ export class ImageUploaderComponent implements OnInit {
 
   upload() {
     console.log("uploading");
-    this.fileUploadService.upload(this.file).subscribe(data => {
+    var reason = this.form.get('reason').value;
+    var desc = this.form.get('description').value;
+    this.fileUploadService.upload(this.file, reason, desc).subscribe(data => {
       console.log(data);
+      this.file = null;
     }, err => {
       console.log(err);
+      this.file = null;
     });
   }
 

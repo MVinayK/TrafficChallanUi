@@ -15,6 +15,20 @@
         <div class="image-area mt-4"><img id="imageResult" src="{{filePath}}" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
 
         <div class="text-center">
+            <form [formGroup]="form">  
+            <div class="form-group">
+                <select formControlName="reason" class="form-control">
+                    <option>Choose Reason</option>  
+                    <option *ngFor="let r of reasonList">{{r}}</option>  
+                </select>  
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea formControlName="description" class="form-control" id="description" rows="3"></textarea>
+                </div>
+            </div>
+            </form>
+        </div>
+        <div class="text-center" *ngIf="file">
             <button class="btn btn-success" (click)="upload()">Upload</button>
         </div>
 
