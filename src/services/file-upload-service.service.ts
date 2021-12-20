@@ -17,5 +17,17 @@ export class FileUploadService {
     return this.http.post('http://localhost:8080/ocr/image', formData);
   }
 
+  getAllImages() : Observable<any>{
+    return this.http.get('http://localhost:8080/all/images/ocred');
+  }
+
+  getSingleImage(path: string) : Observable<any> {
+    return this.http.get('http://localhost:8080/image/aws/?key=' + path);
+  }
+
+  updateNumberPlate(imageId: string, plateNumber : string) : Observable<any>{
+    return this.http.post('http://localhost:8080/numberplate/' + imageId + '/' + plateNumber , null);
+  }
+
   constructor(private http:HttpClient) { }
 }

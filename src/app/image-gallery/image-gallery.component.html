@@ -2,14 +2,32 @@
     <div class="col" style="margin: 1%;">
         <p>Select Image from the grid</p>
         <div class="container">
-            <div class="row">
-              <div class="col" (click)="selectImage()">
-                <img src="../../assets/img/plate_1.jpg" alt="">
+            <div class="row" style="display: inline-flex;">
+              <div class="col" *ngFor="let img of allImages" (click)="selectImage(img)" style="border: 1px solid yellow; position: relative;">
+                <img loading="lazy" src="http://localhost:8080/image/aws/?key={{img.imagePath}}" class="rounded" width="100px" height="100px" aria-placeholder="image">
               </div>
             </div>
           </div>
     </div>
     <div class="col" style="margin: 1%; border: 1px solid grey;">
-        <p>Processing</p>
+        <div>
+          <!--Image goes here-->
+          <img loading="lazy" src="http://localhost:8080/image/aws/?key={{imagePath}}" class="rounded" width="400px" height="auto" aria-placeholder="image">
+        </div>
+        <div>
+          <hr>
+          <!--Details goes here-->
+          <p><b>Image ID </b> :: {{imageId}}</p>
+          <p><b>Image Path</b> :: {{imagePath}}</p>
+          <p><b>Challan Reason</b> :: {{reason}}</p>
+          <p><b>Description</b> :: {{desc}}</p>
+          <p><b>Created Date</b> :: {{createDate}}</p>
+          <p><b>Number Plate</b> :: {{plateNumber}}</p>
+          <input type="text" class="form-control" (blur) = "plateNumberChange($event.target.value)" value="{{plateNumber}}">
+          <hr>
+          <div class="text-center">
+            <button class="btn btn-success" style="margin: 1%;" (click)="submitToSchedule()">Submit</button>
+        </div>
+        </div>
     </div>
 </div>
